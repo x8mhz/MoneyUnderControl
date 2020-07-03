@@ -1,2 +1,2 @@
-# MoneyUnderControl
-A expense tracker
+# Money Under Control
+A expense tracker 
