@@ -22,7 +22,7 @@ namespace MoneyUnderControl.Domain.Commands
 
         public async Task<ValidationResult> Handle(RegisterNewExpenseReportCommand request, CancellationToken cancellationToken)
         {
-            var expense = new ExpenseReport(Guid.NewGuid(), request.Item, request.Price, request.ExpenseDate, DateTime.Now, request.Category, request.Status);
+            var expense = new ExpenseReport(Guid.NewGuid(), request.Item, request.Price, request.ExpenseDate, DateTime.Now, request.Category, request.Status, request.Description);
 
             _repository.Add(expense);
 
@@ -31,7 +31,7 @@ namespace MoneyUnderControl.Domain.Commands
 
         public async Task<ValidationResult> Handle(UpdateExpenseReportCommand request, CancellationToken cancellationToken)
         {
-            var expense = new ExpenseReport(request.Id, request.Item, request.Price, request.ExpenseDate, request.ReleaseDate, request.Category, request.Status);
+            var expense = new ExpenseReport(request.Id, request.Item, request.Price, request.ExpenseDate, request.ReleaseDate, request.Category, request.Status, request.Description);
 
             _repository.Update(expense);
 
@@ -40,7 +40,7 @@ namespace MoneyUnderControl.Domain.Commands
 
         public async Task<ValidationResult> Handle(RemoveExpenseReportCommand request, CancellationToken cancellationToken)
         {
-            var expense = new ExpenseReport(request.Id, request.Item, request.Price, request.ExpenseDate, request.ReleaseDate, request.Category, request.Status);
+            var expense = new ExpenseReport(request.Id, request.Item, request.Price, request.ExpenseDate, request.ReleaseDate, request.Category, request.Status, request.Description);
 
             _repository.Remove(expense);
 

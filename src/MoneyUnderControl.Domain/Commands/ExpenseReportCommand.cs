@@ -11,5 +11,6 @@ namespace MoneyUnderControl.Domain.Commands
         public DateTime ReleaseDate { get; protected set; }
         public string Category { get; protected set; }
         public bool Status { get; protected set; }
+        public string Description { get; protected set; }
     }
 }

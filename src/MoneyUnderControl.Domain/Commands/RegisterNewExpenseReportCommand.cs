@@ -6,13 +6,14 @@ namespace MoneyUnderControl.Domain.Commands
 {
     public class RegisterNewExpenseReportCommand : ExpenseReportCommand, IRequest<ValidationResult>
     {
-        public RegisterNewExpenseReportCommand(string item, decimal price, DateTime expenseDate, string category, bool status)
+        public RegisterNewExpenseReportCommand(string item, decimal price, DateTime expenseDate, string category, bool status, string description)
         {
             Item = item;
             Price = price;
             ExpenseDate = expenseDate;
             Category = category;
             Status = status;
+            Description = description;
         }
     }
 }

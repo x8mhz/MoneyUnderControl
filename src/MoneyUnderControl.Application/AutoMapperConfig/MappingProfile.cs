@@ -14,10 +14,10 @@ namespace MoneyUnderControl.Application.AutoMapperConfig
 
             // ViewModel to Domain
             CreateMap<ExpenseReportViewModel, RegisterNewExpenseReportCommand>().ConstructUsing(x =>
-                new RegisterNewExpenseReportCommand(x.Item, x.Price, x.ExpenseDate, x.Category, x.Status));
+                new RegisterNewExpenseReportCommand(x.Item, x.Price, x.ExpenseDate, x.Category, x.Status, x.Description));
 
             CreateMap<ExpenseReportViewModel, UpdateExpenseReportCommand>().ConstructUsing(x =>
-                new UpdateExpenseReportCommand(x.Id, x.Item, x.Price, x.ExpenseDate, x.Category, x.Status));
+                new UpdateExpenseReportCommand(x.Id, x.Item, x.Price, x.ExpenseDate, x.Category, x.Status, x.Description));
         }
     }
 }

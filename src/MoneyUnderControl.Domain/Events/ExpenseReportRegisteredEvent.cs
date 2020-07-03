@@ -8,7 +8,7 @@ namespace MoneyUnderControl.Domain.Events
 {
     public class ExpenseReportRegisteredEvent : INotification
     {
-        public ExpenseReportRegisteredEvent(Guid id, string item, decimal price, DateTime expenseDate, DateTime releaseDate, string category, bool status)
+        public ExpenseReportRegisteredEvent(Guid id, string item, decimal price, DateTime expenseDate, DateTime releaseDate, string category, bool status, string description)
         {
             Id = id;
             Item = item;
@@ -17,6 +17,7 @@ namespace MoneyUnderControl.Domain.Events
             ReleaseDate = releaseDate;
             Category = category;
             Status = status;
+            Description = description;
         }
 
         public Guid Id { get; set; }
@@ -26,5 +27,6 @@ namespace MoneyUnderControl.Domain.Events
         public DateTime ReleaseDate { get; private set; }
         public string Category { get; private set; }
         public bool Status { get; private set; }
+        public string Description { get; private set; }
     }
 }

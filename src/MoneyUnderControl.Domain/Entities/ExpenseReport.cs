@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace MoneyUnderControl.Domain.Entities
 {
@@ -9,7 +10,7 @@ namespace MoneyUnderControl.Domain.Entities
             // required by EF
         }
 
-        public ExpenseReport(Guid id, string item, decimal price, DateTime expenseDate, DateTime releaseDate, string category, bool status)
+        public ExpenseReport(Guid id, string item, decimal price, DateTime expenseDate, DateTime releaseDate, string category, bool status, string description)
         {
             Id = id;
             Item = item;
@@ -18,6 +19,7 @@ namespace MoneyUnderControl.Domain.Entities
             ReleaseDate = releaseDate;
             Category = category;
             Status = status;
+            Description = description;
         }
 
         public Guid Id { get;  private set; }

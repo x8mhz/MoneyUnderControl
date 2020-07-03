@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MoneyUnderControl.Application.Interfaces;
 using MoneyUnderControl.Application.ViewModels;
+using System;
+using System.Threading.Tasks;
 
 namespace MoneyUnderControl.Web.Controllers
 {
@@ -16,19 +16,25 @@ namespace MoneyUnderControl.Web.Controllers
         }
 
         // GET: ExpenseReportController
-        [HttpGet]
+        [HttpGet()]
         public async Task<ActionResult> Index()
         {
             return View(await _service.GetAll());
         }
 
         // GET: ExpenseReportController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet("Detalhes/{id}")]
+        public async Task<ActionResult> Details(Guid? id)
         {
-            return View();
+            if (id == null) return NotFound();
+            var viewModel = await _service.GetById(id.Value);
+            if (viewModel == null) return NotFound();
+
+            return View(viewModel);
         }
 
         // GET: ExpenseReportController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -46,45 +52,47 @@ namespace MoneyUnderControl.Web.Controllers
         }
 
         // GET: ExpenseReportController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("editar/{id}")]
+        public async Task<IActionResult> Edit(Guid? id)
         {
-            return View();
+            if (id == null) return NotFound();
+
+            var viewModel = await _service.GetById(id.Value);
+            if (viewModel == null) return NotFound();
+
+            return View(viewModel);
         }
 
         // POST: ExpenseReportController/Edit/5
-        [HttpPost]
+        [HttpPost("editar/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(ExpenseReportViewModel viewModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (!ModelState.IsValid) return View(viewModel);
+
+            await _service.Update(viewModel);
+
+            return View(viewModel);
         }
 
         // GET: ExpenseReportController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
-            return View();
+            if (id == null) return NotFound();
+            var viewModel = await _service.GetById(id.Value);
+            if (viewModel == null) return NotFound();
+
+            return View(viewModel);
         }
 
         // POST: ExpenseReportController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _service.Remove(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

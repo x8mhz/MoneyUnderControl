@@ -6,7 +6,7 @@ namespace MoneyUnderControl.Domain.Commands
 {
     public class UpdateExpenseReportCommand : ExpenseReportCommand, IRequest<ValidationResult>
     {
-        public UpdateExpenseReportCommand(Guid id, string item, decimal price, DateTime expenseDate, string category, bool status)
+        public UpdateExpenseReportCommand(Guid id, string item, decimal price, DateTime expenseDate, string category, bool status, string description)
         {
             Id = id;
             Item = item;
@@ -14,6 +14,7 @@ namespace MoneyUnderControl.Domain.Commands
             ExpenseDate = expenseDate;
             Category = category;
             Status = status;
+            Description = description;
         }
     }
 }
