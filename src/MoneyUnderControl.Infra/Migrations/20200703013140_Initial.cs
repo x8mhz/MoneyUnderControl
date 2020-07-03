@@ -12,10 +12,13 @@ namespace MoneyUnderControl.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Item = table.Column<string>(maxLength: 250, nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
+                    Item = table.Column<string>(maxLength: 100, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ExpenseDate = table.Column<DateTime>(nullable: false),
-                    Category = table.Column<string>(maxLength: 50, nullable: false)
+                    ReleaseDate = table.Column<DateTime>(nullable: false),
+                    Category = table.Column<string>(maxLength: 50, nullable: false),
+                    Status = table.Column<bool>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -11,18 +11,27 @@ namespace MoneyUnderControl.Infra.Mappings
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Item)
-                .HasMaxLength(250)
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(x => x.Price)
+                .HasColumnType("decimal(18,2)")
                 .IsRequired();
 
             builder.Property(x => x.ExpenseDate)
                 .IsRequired();
 
+            builder.Property(x => x.ReleaseDate)
+                .IsRequired();
+
             builder.Property(x => x.Category)
                 .HasMaxLength(50)
                 .IsRequired();
+
+            builder.Property(x => x.Status)
+                .IsRequired();
+
+            builder.Property(x => x.Description);
         }
     }
 }
