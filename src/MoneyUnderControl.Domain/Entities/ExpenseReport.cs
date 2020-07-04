@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using NetDevPack.Messaging;
 
 namespace MoneyUnderControl.Domain.Entities
 {

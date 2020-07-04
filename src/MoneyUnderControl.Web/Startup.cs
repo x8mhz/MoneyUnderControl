@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +10,6 @@ using MoneyUnderControl.Application.AutoMapperConfig;
 using MoneyUnderControl.Application.Interfaces;
 using MoneyUnderControl.Application.Services;
 using MoneyUnderControl.Domain.Commands;
-using MoneyUnderControl.Domain.Events;
 using MoneyUnderControl.Domain.Interfaces;
 using MoneyUnderControl.Infra.Context;
 using MoneyUnderControl.Infra.Repositories;
@@ -39,10 +33,6 @@ namespace MoneyUnderControl.Web
             services.AddMediatR(typeof(Startup));
 
             services.AddScoped<IExpenseReportService, ExpenseReportService>();
-
-            services.AddScoped<INotificationHandler<ExpenseReportRegisteredEvent>, ExpenseReportEventHandler>();
-            services.AddScoped<INotificationHandler<ExpenseReportUpdateEvent>, ExpenseReportEventHandler>();
-            services.AddScoped<INotificationHandler<ExpenseReportRemovedEvent>, ExpenseReportEventHandler>();
 
             services.AddScoped<IRequestHandler<RegisterNewExpenseReportCommand, ValidationResult>, ExpenseReportCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateExpenseReportCommand, ValidationResult>, ExpenseReportCommandHandler>();

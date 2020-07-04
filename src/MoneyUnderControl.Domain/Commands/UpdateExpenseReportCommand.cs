@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentValidation.Results;
 using MediatR;
+using MoneyUnderControl.Domain.Validations;
 
 namespace MoneyUnderControl.Domain.Commands
 {
@@ -15,6 +16,12 @@ namespace MoneyUnderControl.Domain.Commands
             Category = category;
             Status = status;
             Description = description;
+        }
+
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateExpenseReportValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

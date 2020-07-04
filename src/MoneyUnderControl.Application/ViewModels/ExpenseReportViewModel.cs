@@ -16,6 +16,7 @@ namespace MoneyUnderControl.Application.ViewModels
 
         [Required(ErrorMessage = "Obrigatório")]
         [DisplayName("Valor")]
+        [DataType(DataType.Currency, ErrorMessage = "Valor inválido")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Obrigatório")]

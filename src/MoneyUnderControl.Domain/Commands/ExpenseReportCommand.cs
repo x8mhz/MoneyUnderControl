@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentValidation.Results;
 
 namespace MoneyUnderControl.Domain.Commands
 {
@@ -12,5 +13,8 @@ namespace MoneyUnderControl.Domain.Commands
         public string Category { get; protected set; }
         public bool Status { get; protected set; }
         public string Description { get; protected set; }
+
+        public ValidationResult ValidationResult { get; set; }
+        public abstract bool IsValid();
     }
 }
